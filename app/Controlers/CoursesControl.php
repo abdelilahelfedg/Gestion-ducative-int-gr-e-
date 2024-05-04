@@ -36,7 +36,7 @@ class CoursesControl
 <?php
             }
             
-            $this->view('CoursesViews/courseProf', $Arg);
+            $this->view('CourseViews/courseProf', $Arg);
         }
         else if($_SESSION['USER'][0]->Role == 'etud')
         {
@@ -46,30 +46,30 @@ class CoursesControl
             $Course = new Course;
             $result = $Course->whe($data);
             
-            $this->view('CoursesViews/courseEtd', $result);
+            $this->view('CourseViews/courseEtd', $result);
         }
         
-        else if($_SESSION['USER'][0]->Role == 'admin')
-        {
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // else if($_SESSION['USER'][0]->Role == 'admin')
+        // {
+        //     if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
-                $de = $_POST;
+        //         $de = $_POST;
                 
-                $de['Filiere'] = 'Tous les etudiants';
-                $de['File'] = $_FILES['course']['name'];
-                $de['Type'] = $_POST['Type'];
-                $de['Prof'] = 'Admin';
-                $filename = $_FILES['course']['name'];
-                $path = '../public/assets/uploads/' . $filename;
-                move_uploaded_file($_FILES['course']['tmp_name'], $path);
+        //         $de['Filiere'] = 'Tous les etudiants';
+        //         $de['File'] = $_FILES['course']['name'];
+        //         $de['Type'] = $_POST['Type'];
+        //         $de['Prof'] = 'Admin';
+        //         $filename = $_FILES['course']['name'];
+        //         $path = '../public/assets/uploads/' . $filename;
+        //         move_uploaded_file($_FILES['course']['tmp_name'], $path);
 
-                $Course = new Course;
-                $Course->insert($de);
-            }
+        //         $Course = new Course;
+        //         $Course->insert($de);
+        //     }
             
             
-             $this->view('CoursesViews/courseAdmin');
-        }
+        //      $this->view('CourseViews/courseAdmin');
+        // }
         
     }
 }
