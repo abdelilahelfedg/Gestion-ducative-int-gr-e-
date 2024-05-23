@@ -14,24 +14,28 @@
             <div class="card bg-light my-5">
                 <div class="card-body">
                     <div class="card-title text-center mb-3">Espace de Gestion des absences</div>
+        
                     <a href="<?= ROOT . "/" . "AbsenceControl" . "/" . "Faire_Absence";?>"><button class="btn btn-success mb-3" type="submit" name="Faire_Absence">Faire Absence</button></a>
 
-                    <form method="POST" enctype="multipart/form-data">
+                    <!-- <form method="POST" enctype="multipart/form-data"> -->
                         <!-- Bouton "Faire Absence" -->
                         <!-- Sélecteur du nombre de séances -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="nombre_seance">Nombre de séance</label>
                             <select class="form-select" id="nombre_seance" name="nombre_seance">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                                <!-- Ajoutez d'autres options selon vos besoins -->
-                            </select>
-                        </div>
+                                 Ajoutez d'autres options selon vos besoins -->
+                            <!-- </select>
+                        </div>  -->
                         
                         <!-- Bouton "Valider" -->
-                        <button class="btn btn-success" type="submit" name="submit">Valider</button>
-                    </form>
+                        <!-- <button class="btn btn-success" type="submit" name="submit">Valider</button>
+                    </form> -->
+                    <a href="<?= ROOT . "/" . "AbsenceControl" . "/" . "Voir_statistique";?>"><button class="btn btn-success mb-3" type="submit" name="Faire_Absence">Voir les statistiques</button></a>
+                    <a href="<?= ROOT . "/" . "AbsenceControl" . "/" . "Update";?>"><button class="btn btn-primary mb-3" type="submit" name="Faire_Absence">Modifier</button></a>
+
                     
                 </div>
             </div>
@@ -39,4 +43,3 @@
     </div>
 </div>
 </body>
-
