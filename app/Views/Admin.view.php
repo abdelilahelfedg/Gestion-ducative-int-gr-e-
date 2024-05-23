@@ -36,13 +36,19 @@
     <div class="row pt-5 mb-5">
         <div class="col-md-4">
             <div class="card p-3 mb-2 ">
-                <a href="#" class="btn btn-lg btn-primary border border-0">Importation des Etudiants</a>
+                <a href="<?= ROOT.'/'. 'importationControl'.'/'.'ImporterEtud'?>" class="btn btn-lg btn-primary border border-0">Importation des Etudiants</a>
                 
             </div>
         </div>
         <div class="col-md-4">
             <div class="card p-3 mb-2">
                  <a href="<?= ROOT.'/'. 'AnnoncesControl'?>" class="btn btn-lg btn-primary border border-0">Partage des annonces</a>
+                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mb-2 ">
+                <a href="<?= ROOT.'/'. 'importationControl'.'/'.'ImporterProf'?>" class="btn btn-lg btn-primary border border-0">Importation des profs</a>
                 
             </div>
         </div>
