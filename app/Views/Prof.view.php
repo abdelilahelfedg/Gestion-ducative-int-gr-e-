@@ -43,7 +43,7 @@
   transform: scale(0.95) rotateZ(1.7deg);
 }
 body {
-  background-image: url('../public/assets/images/pexels-fauxels-3184328.png');
+  background-image: url('../public/assets/images/profbg.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;

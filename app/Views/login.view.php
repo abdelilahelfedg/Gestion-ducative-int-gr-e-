@@ -119,7 +119,7 @@
 }
 
 body{
-  background-image: url('../public/assets/images/The Most.png');
+  background-image: url('../public/assets/images/login.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;
