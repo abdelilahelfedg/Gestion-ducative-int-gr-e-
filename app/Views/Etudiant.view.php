@@ -10,15 +10,10 @@
     <link rel="icon" type="image/png" href="../public/assets/images/graduation_5306181.png">
 </head>
 <style>
-   .container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .card {
   box-sizing: border-box;
-  width: 350px;
-  height: 254px;
+  width: 415px;
+  height: 270px;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -33,6 +28,18 @@
   user-select: none;
   font-weight: bolder;
   color: black;
+}
+
+@media (max-width: 1405px) {
+  .card {
+    width: 315px;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 460px;
+  }
 }
 
 .card:hover {
@@ -64,8 +71,6 @@ img{
 .row{
   text-align: center;
   margin-bottom: -100px;
-  display: flex;
-  justify-content: center;
 }
 nav{
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -108,9 +113,9 @@ nav{
 
 </nav>
 
-<div class="container pt-5 mt-5 mb-5">
-    <div class="row ">
-        <div class="col-md-4">
+<div class="container mt-5">
+    <div class="row pt-5 mb-5">
+        <div class="col-lg-4 col-sm-10">
             <h3><a href="<?= ROOT."/"."AnnoncesControl"?>" >
             <div class="card p-3 mb-5 "><i class="fas fa-bullhorn icon fa-3x"></i>
                 Annonces
@@ -118,7 +123,7 @@ nav{
               </a></h3>
             
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
               <h3><a href="<?= ROOT."/"."CoursesControl"?>">
                     <div class="card p-3 mb-5">
                       <i class="fas fa-chalkboard-teacher fa-3x icon"></i>
@@ -127,7 +132,7 @@ nav{
               </a></h3>
               
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
             <h3><a href="#">
                     <div class="card p-3 mb-5">
                       <i class="fas fa-file-alt fa-3x icon"></i>
@@ -136,7 +141,7 @@ nav{
               </a></h3>
         </div>
     
-     <div class="col-md-4">
+     <div class="col-lg-4 col-sm-12">
               <h3><a href="#">
                     <div class="card p-3 mb-5">
                       <i class="fas fa-user-times fa-3x icon"></i>
@@ -144,7 +149,7 @@ nav{
                     </div> 
               </a></h3>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
         <h3><a href="#">
                     <div class="card p-3 mb-5">
                       <i class="fas fa-clipboard fa-3x icon"></i>
@@ -152,7 +157,7 @@ nav{
                     </div> 
               </a></h3>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
         <h3><a href="#">
                     <div class="card p-3 mb-5">
                       <i class="fas fa-life-ring fa-3x icon"></i>

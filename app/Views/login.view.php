@@ -45,7 +45,7 @@
 .log-card { 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   position: absolute;
-  width: 300px;
+  width: 400px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -57,25 +57,13 @@
 .heading { 
   font-size: 28px;
   font-weight: 800;
-  color: white;
+  color: black;
 }
 
 .password-group {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
-}
-
-.forget-password {
-  font-size: 14px;
-  font-weight: 500;
-  color: #2879f3;
-  text-decoration: none;
-}
-
-.forget-password:hover {
-  text-decoration: underline;
-  color: #f37e10;
 }
 
 .btn {
@@ -97,7 +85,7 @@
   font-family: 'Segoe UI', sans-serif;
   margin: 1em 0 1em 0;
   max-width: 190px;
-  color: white;
+  color: black;
   position: relative;
 }
 
@@ -108,7 +96,7 @@
   border: 2px solid rgb(200, 200, 200);
   background-color: transparent;
   border-radius: 20px;
-  color: white;
+  color: black;
   width: 100%;
 }
 

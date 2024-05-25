@@ -16,8 +16,8 @@
   }
   .card {
   box-sizing: border-box;
-  width: 350px;
-  height: 254px;
+  width: 415px;
+  height: 270px;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -32,6 +32,18 @@
   user-select: none;
   font-weight: bolder;
   color: black;
+}
+
+@media (max-width: 1405px) {
+  .card {
+    width: 315px;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 460px;
+  }
 }
 
 .card:hover {

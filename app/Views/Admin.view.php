@@ -8,10 +8,11 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <style>
+
   .card {
   box-sizing: border-box;
-  width: 350px;
-  height: 254px;
+  width: 415px;
+  height: 270px;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -26,6 +27,17 @@
   user-select: none;
   font-weight: bolder;
   color: black;
+}
+@media (max-width: 1405px) {
+  .card {
+    width: 315px;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 460px;
+  }
 }
 
 .card:hover {
@@ -91,7 +103,7 @@ nav{
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="#"><strong>Log out</strong></a>
+          <a class="nav-link" href=""><strong>Log out</strong></a>
       </ul>
     
     </div>
@@ -102,14 +114,14 @@ nav{
 
 <div class="container mt-5">
     <div class="row pt-5 mb-5">
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
             <h3><a href="#"></a>
-            <div class="card p-3 mb-2 "><i class="fa-solid fa-user-plus icon fa-3x"></i>
+            <div class="card p-3 mb-2"><i class="fa-solid fa-user-plus icon fa-3x"></i>
                 Importation des Etudiants
                 </div>
               </a></h3>
             </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
                   <h3>
                  <a href="<?= ROOT.'/'. 'AnnoncesControl'?>">
                  <div class="card p-3 mb-2 "><i class="fa-solid fa-share-alt icon fa-3x"></i>
@@ -117,7 +129,7 @@ nav{
                   </div>
                 </a></h3>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-sm-12">
     
               <h3>
                 <a href="<?= ROOT.'/'. 'ArchifesControl'?>">
