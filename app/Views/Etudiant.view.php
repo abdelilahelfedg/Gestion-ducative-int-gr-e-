@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="../public/assets/images/graduation_5306181.png">
 </head>
 <style>
+  
   .card {
   box-sizing: border-box;
   width: 415px;
