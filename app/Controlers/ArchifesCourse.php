@@ -1,6 +1,5 @@
 <?php
 
-
 class ArchifesCourse
 {
     
@@ -31,46 +30,34 @@ class ArchifesCourse
                     }
                     $pst['DateArch'] = $_POST['dateCours'];
 
-                    if($qu != false){
+                    date_default_timezone_set('Africa/Casablanca');
+
+                    $current_date = date('Y-m-d');
+
+                    $timestamp_fin = strtotime($pst['dateCours']);
+
+                    $timestamp_actuel = strtotime($current_date);
+
+                    if($timestamp_actuel >= $timestamp_fin && $qu){
                         for($i = 0; $i<=count($qu); $i++){
                             if (is_array($qu) && isset($qu[$i]) && is_object($qu[$i])) {
                                 $pst['Titre'] = $qu[$i]->Titre ?? null; 
                                 $pst['Fichier'] = $qu[$i]->File ?? null;
-                            } 
+                            }
                             $pst['Origine'] = 'Document';
                             $archive = new Archive;
                             
                             if(!$archive->where($pst)){
                                 $archive->insert($pst);
-                                
                             }
-                            $course->delete($pst['Fichier'], 'File'); // à voir 
-                        }
-                        ?>
 
-            <!-- pour etre dans un fichier seul -->
-                            <div class="container mt-5"> 
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Succès !</strong> Vous avez archiver vos documents avec succès.
-                                </div>
-                            </div>
-            <!------------------------------------>
-
-                        <?php     
-
-                    }else{?>
-                        <div class="container mt-5"> 
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oops !</strong> Aucun document trouvé pour archifer.
-                            </div>
-                        </div>
-                <?php 
+                            $course->delete($pst['Fichier'], 'File');
+               
                     }
-
-                }    
-                
+                }   
+            }
             
-        } $this->view('ArchivesViews/archivesCourses', $filieres);
+            }$this->view('ArchivesViews/archivesCourses', $filieres);
+        }
     }
-}
 }
