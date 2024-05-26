@@ -11,7 +11,7 @@
 <style>
   .card {
   box-sizing: border-box;
-  width: 350px;
+  width: 450px;
   height: 254px;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
@@ -34,11 +34,23 @@
   transform: scale(1.05);
 }
 
+@media (max-width: 1405px) {
+  .card {
+    width: 315px;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 460px;
+  }
+}
+
 .card:active {
   transform: scale(0.95) rotateZ(1.7deg);
 }
 body {
-  background-image: url('../public/assets/images/pexels-vojtech-okenka-127162-392018.png');
+  background-image: url('../public/assets/images/adminbg.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;

@@ -117,9 +117,9 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 1.1em;
-  background-color:  #004225;
+  background-color:  #ADD8E6;
   cursor: pointer;
-  color: white;
+  color: black;
   width: 490px;
   height: 50px;
   margin-top: 10px;
@@ -130,7 +130,7 @@ button:hover {
   box-shadow: var(--hover-shadows);
 }
 body {
-  background-image: url('../public/assets/images/pexels-fauxels-3184328.png');
+  background-image: url('../public/assets/images/adminbg.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;
@@ -143,14 +143,16 @@ body {
 <div class="container">
 <form class="form">
   <span class="form-title">Espace d'Archifage des Annonces</span>
-  <div class="form-paragraph">
+
+  <label><strong>Vous allez archiver tous les annonces publiées l'années courante</strong></label>
+  <!-- <div class="form-paragraph">
     <label for="email">Configurer la date</label>
     <input type="date" class="form-control" name="dateAnnonce">
-  </div>
-  <label class="form-paragraph">Choisir un fichier</label>
+  </div> -->
+  <!-- <label class="form-paragraph">Choisir un fichier</label>
   <label for="file-input" class="drop-container">
   <input type="file" accept="/*" required="" id="file-input" name="course">
-</label>
+</label> -->
 <button>Archiver</button>
 <a href="<?= ROOT."/"."ArchifesControl"?>"><button>Retour</button></a>
 </form>

@@ -78,7 +78,7 @@
 		}
 
 		body {
-			background-image: url('../public/assets/images/pexels-vojtech-okenka-127162-392018.png');
+			background-image: url('../public/assets/images/adminbg.png');
 			background-size: cover; 
 			background-position: center; 
 			background-repeat: no-repeat;

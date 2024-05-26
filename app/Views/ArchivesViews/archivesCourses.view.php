@@ -118,9 +118,9 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 1.1em;
-  background-color:  #004225;
+  background-color:  #ADD8E6;
   cursor: pointer;
-  color: white;
+  color: black;
   width: 490px;
   height: 50px;
   margin-top: 10px;
@@ -131,7 +131,7 @@ button:hover {
   box-shadow: var(--hover-shadows);
 }
 body {
-  background-image: url('../public/assets/images/pexels-fauxels-3184328.png');
+  background-image: url('../public/assets/images/adminbg.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;
@@ -146,7 +146,7 @@ body {
 <form class="form">
   <span class="form-title">Espace Archifage des Cours</span>
   <div class="form-paragraph">
-    <label for="email">Niveau scolaire</label>
+    <label for="email"><strong>Niveau scolaire</strong></label>
     <div class="form-paragraph">
     <select name="Niveau" class="input">
     <option value="all">Tous les niveaux</option>
@@ -155,14 +155,12 @@ body {
         <?php } ?>
     </select>
     </div>
-    <input type="text" autocomplete="off" name="Objet" class="input" placeholder="Objet">
   </div>
-  <label class="form-paragraph">Choisir un fichier</label>
-  <label for="file-input" class="drop-container">
-  <input type="file" accept="/*" required="" id="file-input" name="course">
-
-</label>
-<button>Partager</button>
+  <!-- <div class="form-paragraph">
+    <label for="email"><strong>Configurer la date</strong></label>
+    <input type="date" class="form-control" name="dateAnnonce">
+  </div> -->
+<button>Archiver</button>
 <a href="<?= ROOT."/"."ArchifesControl"?>"><button>Retour</button></a>
 </form>
 </div>
