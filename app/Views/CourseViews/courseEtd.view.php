@@ -69,7 +69,7 @@
 		}
 
 		body {
-  			background-image: url('../public/assets/images/pexels-expressivestanley-1454360.png');
+  			background-image: url('../public/assets/images/studentbg.png');
   			background-size: cover; 
   			background-position: center; 
   			background-repeat: no-repeat;

@@ -131,7 +131,7 @@ button:hover {
   box-shadow: var(--hover-shadows);
 }
 body {
-  background-image: url('../public/assets/images/pexels-fauxels-3184328.png');
+  background-image: url('../public/assets/images/profbg.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;
