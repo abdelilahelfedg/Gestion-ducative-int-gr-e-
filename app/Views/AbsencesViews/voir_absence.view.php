@@ -177,12 +177,9 @@
         <tbody>
         <?php foreach($data as $objet): ?>
                             <?php
-                                // Vérifiez si le nombre d'absences totales est supérieur à 7
                                 if ($objet->nb_total > 7) {
-                                    // Si oui, utilisez la couleur rouge pour la ligne
                                     $row_color = 'background-color: red;';
                                 } else {
-                                    // Sinon, utilisez la couleur par défaut (blanc)
                                     $row_color = '';
                                 }
                             ?>
