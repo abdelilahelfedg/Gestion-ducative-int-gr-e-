@@ -38,7 +38,7 @@ class ArchifesCourse
 
                     $timestamp_actuel = strtotime($current_date);
 
-                    if($timestamp_actuel >= $timestamp_fin && $qu){
+                    if($timestamp_actuel == $timestamp_fin && $qu){
                         for($i = 0; $i<=count($qu); $i++){
                             if (is_array($qu) && isset($qu[$i]) && is_object($qu[$i])) {
                                 $pst['Titre'] = $qu[$i]->Titre ?? null; 
