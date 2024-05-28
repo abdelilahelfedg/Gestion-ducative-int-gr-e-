@@ -1,41 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partage des Annonces</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-
-<div class="container-lg bg-primary my-5">
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <div class="card bg-light my-5">
-                    <div class="card-body">
-                        <div class="card-title text-center mb-3">Espace d'importation des étudiants</div>
-                        <form method="POST" enctype="multipart/form-data">
-                            
-                            
-                            <label class="form-label">Choisir un fichier Excel</label>
-                            <input type="file" name="Excel" class="form-control" accept=".xlsx, .xls" required>
-                            <button class="btn btn-primary my-3">Partager</button>
-                       </form>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +12,7 @@ integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIe
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 50px;
 }
 .form {
   background-color: #fff;
@@ -180,14 +142,40 @@ body {
 <body>
 
 <div class="container">
-<form class="form">
+<form class="form" enctype="multipart/form-data" method="POST">
   <span class="form-title">Espace d'importation des étudiants</span>
   <div class="form-paragraph">
   <label><strong>Choisir un fichier Excel</strong></label>
   <div>
   <label for="file-input" class="drop-container">
-  <input type="file" accept=".xlsx, .xls" id="file-input" name="Excel">
+  
+  <input type="file" accept=".xlsx, .xls" id="file-input" name="Excel" required>
   </div>
+  <?php if(isset($data)):  ?>
+  <?php if(isset($data['nombre'])): ?>  
+  <div class="container mt-5">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>erreur syntaxe dans l'enregestrement <?=$data['nombre'];?></strong> 
+                  </div>
+                </div> 
+<?php endif; ?>  
+<?php if(isset($data['alert'])): ?>  
+  <div class="container mt-5">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>erreur il ya email existant dans table login de meme personne dans l'enregestrement <?=$data['alert'];?></strong> 
+                  </div>
+                </div> 
+<?php endif; ?>
+<?php if(isset($data['nb_modifie']) ||isset($data['nb_ajoute'])): ?> 
+<div class="container mt-5">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Succes Vous avez importez <?=$data['nb_ajoute']?> nouveaux et modifiez <?= $data['nb_modifie'] ; ?>Etd</strong>
+        </div>
+    </div>
+
+<?php endif; ?>  
+              
+<?php endif; ?>              
 <button>Partager</button>
 <a href="<?= ROOT."/"."HomeAdmin"?>"><button>Retour</button></a>
 </form>
