@@ -1,4 +1,5 @@
 <?php
+
     require 'vendor/autoload.php';
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -6,7 +7,14 @@
 
 Class ImportationControl {
     use Controller;
+    public function validateName($name) {
+        $pattern = "/^[a-zA-Z\s'-]+$/";
+        return preg_match($pattern, $name);
+    }
+
     public function existsInDatabase($row,$verif) {
+
+
     if($verif=='etud'){    
     $etu= new Etudiant;
     $Email=$row[0];
@@ -30,8 +38,8 @@ Class ImportationControl {
 
     }
     public function generateRandomPassword() {
-        // Liste des caractères possibles pour le mot de passe
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        // Liste des caractères 
+        $characters = '0123456789';
         
         // Longueur du mot de passe
         $passwordLength = 8;
@@ -41,7 +49,7 @@ Class ImportationControl {
     
         // Boucle pour générer chaque caractère du mot de passe
         for ($i = 0; $i < $passwordLength; $i++) {
-            // Obtenir un caractère aléatoire de la liste des caractères
+            // Obtenir un caractère aléatoire de la liste 
             $randomIndex = mt_rand(0, strlen($characters) - 1);
             $password .= $characters[$randomIndex];
         }
@@ -49,7 +57,7 @@ Class ImportationControl {
         // Retourner le mot de passe généré
         return $password;
     }
-    public function saveToDatabase($row,$verif) {
+    public function saveToDatabase($row,$verif,&$data777) {
         $result=$this->existsInDatabase($row,$verif);
         if($verif=="etud"){
         $etu= new Etudiant;
@@ -63,9 +71,12 @@ Class ImportationControl {
         $data['Niveau']=$Niveau;
         if($result==false){
             $etu->insert($data);
+            $data777['nb_ajoute']+=1;    
+
         }
         else{
             $etu->update($Email,$data,"Email");
+            $data777['nb_modifie']+=1;
 
         }}
         else{
@@ -80,9 +91,13 @@ Class ImportationControl {
             $data['Niveaux_Enseigne']=$Niveau;
             if($result==false){
                 $prof->insert($data);
+                $data777['nb_ajoute']++;    
+
             }
             else{
                 $prof->update($Email,$data,"Email");
+                $data777['nb_modifie']++;
+
     
             }
         }
@@ -95,8 +110,8 @@ Class ImportationControl {
             Redirect('_404');
         }
         // if($_SESSION['USER'][0]->Role == 'Admin'){
-            $this->view('ImportationViews/pagePrincipal');
             if($_SERVER['REQUEST_METHOD']== 'POST'){
+                $data777=[];
                 if($_FILES['Excel']['error']==0){
                     $file=$_FILES['Excel']['tmp_name'];
                     $obj=PhpOffice\PhpSpreadsheet\IOFactory::load($file);
@@ -107,26 +122,62 @@ Class ImportationControl {
                         }
                         return !empty(array_filter($row));
                     });
+                    $cmpt=0;
                     foreach($data as $row){
                         $row = array_filter($row, function($value) {
                             return $value !== null && $value !== ''; // Supprimer les valeurs nulles ou vides
                         });
-                    
-                        if(count($row)!=4) {
-                        echo "les données sont erronées ";    
-                        return; // Passe à la prochaine itération de la boucle
-                        }
+                        $cmpt++;
+                        $data100['nombre']=$cmpt;
+                            if(count($row) != 4) {
+
+                                return $this->view('ImportationViews/pagePrincipal',$data100); // Passe à la prochaine itération de la boucle
+                            }
+                            // Passe à la prochaine itération de la boucle
+            
                         if($row[0]==null || $row[1]==null || $row[2]==null || $row[3]==null){
-                            echo "les données sont erronées";
-                            return;
+
+                            return $this->view('ImportationViews/pagePrincipal',$data100); // Passe à la prochaine itération de la boucle
+                            
                         }
-                        $email=explode("@",$row[0]);
-                        if(count($email)!=2){
-                        echo "erreur au niveau des données sont maldéfiniés ";
-                        return;}
+                        $email=$row[0];
+                        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+                            return $this->view('ImportationViews/pagePrincipal', $data100);
+                        } 
+                        $firstName = $row[1]; // Supposons que le prénom est stocké dans $row['first_name']
+                        $lastName = $row[2]; // Supposons que le nom est stocké dans $row['last_name']
+                        if (!$this->validateName($firstName) || !$this->validateName($lastName)) {
+
+                            return $this->view('ImportationViews/pagePrincipal', $data100);
+                        }
                     }
+                    $cmpt77=0;
+                    $data9=[];
                     foreach($data as $row){
-                    $this->saveToDatabase($row,$verif);
+                        $cmpt77++;
+                        $data9['alert']=$cmpt;
+                        $user=new User;
+                        $result=$user->query("SELECT * FROM login");
+                        if(!empty($result)){
+                            if($verif=='etud'){
+                            foreach($result as $log){
+                                if($log->Email==$row[0] && $log->Role!="Etudiant"){
+                                    return $this->view('ImportationViews/pagePrincipal', $data9);
+                                }}
+                            }
+                            else{
+                                foreach($result as $log){
+                                    if($log->Email==$row[0] && $log->Role!="Prof"){
+                                        return $this->view('ImportationViews/pagePrincipal', $data9);
+                                    }}
+                            }
+                        }
+                        }
+                    $data777['nb_modifie']=0;
+                    $data777['nb_ajoute']=0;    
+                    foreach($data as $row){
+                    $this->saveToDatabase($row,$verif,$data777);
                     }
 
                 }
@@ -148,7 +199,6 @@ Class ImportationControl {
                     }
 
                 }
-                die();
             }
         else{
             $prof=new Prof;
@@ -170,9 +220,12 @@ Class ImportationControl {
                 }
 
             }}
-            die();
         }
-        }}    
+        return $this->view('ImportationViews/pagePrincipal',$data777);
+
+        }
+        return $this->view('ImportationViews/pagePrincipal');
+    }    
         
     
     
@@ -180,6 +233,7 @@ Class ImportationControl {
     // }
     public function ImporterEtud(){
         if($_SESSION['USER'][0]->Role == 'Admin'){
+
         $this->index('etud');}
         
 
