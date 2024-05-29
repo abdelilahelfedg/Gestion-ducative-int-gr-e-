@@ -115,7 +115,7 @@ nav{
 <div class="container mt-5">
     <div class="row pt-5 mb-5">
         <div class="col-lg-4 col-sm-12">
-            <h3><a href="#"></a>
+            <h3><a href="<?= ROOT.'/'. 'importationControl'.'/'.'ImporterEtud'?>"></a>
             <div class="card p-3 mb-2"><i class="fa-solid fa-user-plus icon fa-3x"></i>
                 Importation des Etudiants
                 </div>
@@ -137,6 +137,10 @@ nav{
                 Gestion des Archifages
               </div></a></h3>
             
+        </div>
+           <div class="card p-3 mb-2 ">
+ 
+           <h3><a href="<?= ROOT . '/assets/images/mdp.csv'?>" download>les mots de passe ici</a></h3>
         </div>
     </div>
     
