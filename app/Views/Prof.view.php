@@ -150,7 +150,7 @@ nav{
         <div class="col-md-4">
     
               <h3>
-                <a href="<?= ROOT.'/'. 'ArchifesControl'?>">
+                <a href="<?= ROOT."/"."AbsenceControl"?>">
                 <div class="card p-3 mb-5 "><i class="fas fa-calendar-times icon fa-3x"></i>
                 Gestion des Absences
               </div></a></h3>
