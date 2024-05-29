@@ -143,7 +143,7 @@ nav{
         </div>
     
      <div class="col-lg-4 col-sm-12">
-              <h3><a href="#">
+              <h3><a href="<?= ROOT."/"."AbsenceControl"."/voirMesAbsences"?>">
                     <div class="card p-3 mb-5">
                       <i class="fas fa-user-times fa-3x icon"></i>
                       Absences
