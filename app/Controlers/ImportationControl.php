@@ -190,8 +190,26 @@ Class ImportationControl {
                     $data['Email']=$row->Email;
                     $resu=$log->where($data);
                     if($resu==false){
-                        $data['password']=$this->generateRandomPassword();
-                        $data['Role']='Etudiant';
+                        $file='./assets/images/mdp.csv';
+
+                        $password = $this->generateRandomPassword();
+                        
+                        $hash = password_hash($password, PASSWORD_DEFAULT);
+                        
+                        $data['password'] = $hash;
+                        $data['Role'] = 'Etudiant';
+                        
+                        $handle = fopen($file, 'a');
+                        $data77['Email']=$data['Email'];
+                        $data77['password']=$password ;
+                        $data77['Role']= $data['Role'];
+                        // Vérifier si l'ouverture du fichier a réussi
+                        if ($handle !== false) {
+                            // Écrire les données dans le fichier CSV
+                            fputcsv($handle, $data77);
+                        
+                            // Fermer le fichier
+                            fclose($handle);}
                         $log->insert($data);
                     }
                     else{
@@ -211,8 +229,27 @@ Class ImportationControl {
                 $data['Email']=$row->Email;
                 $resu=$log->where($data);
                 if($resu==false){
-                    $data['password']=$this->generateRandomPassword();
+               //     $file = '../app/Controlers/data/mdp.csv';
+                    $file='./assets/images/mdp.csv';
+
+                    $password = $this->generateRandomPassword();
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                    
+                    $data['password'] = $hash;
+                    
+                    $handle = fopen($file, 'a');
+                    $data77['Email']=$data['Email'];
+                    $data77['password']=$password ;
                     $data['Role']='Prof';
+                    $data77['Role']= $data['Role'];
+                    // Vérifier si l'ouverture du fichier a réussi
+                    if ($handle !== false) {
+                        // Écrire les données dans le fichier CSV
+                        fputcsv($handle, $data77);
+                    
+                        // Fermer le fichier
+                        fclose($handle);}
+                    $data['password']=$hash;
                     $log->insert($data);
                 }
                 else{
