@@ -1,66 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partage des Annonces</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-<div class="container-lg bg-primary my-5">
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <div class="card bg-light my-5">
-                <div class="card-body">
-                    <div class="card-title text-center mb-3">Espace de Gestion des absences</div>
-                    <form  id="myForm" action="<?=ROOT . "/" . "AbsenceControl" ."/" ."Update" ; ?>"  method="POST">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prenom</th>
-                                <th scope="col">Absent</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php if (!empty($data)):?>    
-                            <?php foreach($data as $objet):?>
-                            <?php if (gettype($objet) == 'object'):?>    
-                            <tr>
-                                <th scope="row">#</th>
-                                <td><?=$objet->Email?></td>
-                                <td><?=$objet->Nom?></td>
-                                <td><?=$objet->Prenom?></td>
-                               <td><input class="form-check-input" type="checkbox" name="absent1[]" value="<?=$objet->Email;?>" <?php if(isset($objet->absent)){ if ($objet->absent == true) echo "checked";} ?>></td>
-                            </tr>
-                            <?php endif;?>    
-                            <?php endforeach;?>
-                            <?php endif;?>    
-
-                        </tbody>
-                    </table>
-                    <input type="hidden" name="date_absence" value="<?=date('Y-m-d H:i:s')?>">
-                    <button class="btn btn-success" type="submit" name="absent_modif" value="submit">Valider</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Cours</title>
+	<title>Modifier les absences</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
@@ -123,6 +67,25 @@
 			margin-top: 0.75em;
 			margin-bottom: 0.75em;
 		}
+        .btn {
+        background-color: #28a745;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        border: none;
+        cursor: pointer;
+        width: 30%;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #218838;
+    }
+
+    .container5 {
+        display: flex;
+        justify-content: flex-end;
+    }
 
 		body {
   			background-image: url('../public/assets/images/studentbg.png');
@@ -202,10 +165,14 @@
 	<div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
 
 		<h1 class="flex items-center font-sans font-bold break-normal text-white px-2 py-8 text-xl md:text-2xl">
+        <button class="btn"><a href="<?= ROOT . "/" . "HomeProf"?>">Retour au home</a></button>
+            <br>
       <div class="mx-2">Modifier l'absence</div>
+
 		</h1>
 
 		<div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+        <form  id="myForm" action="<?=ROOT . "/" . "AbsenceControl" ."/" ."Update" ; ?>"  method="POST">
 
 			<table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
 				<thead>
@@ -214,7 +181,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prenom</th>
-                                <th scope="col">Absent <input class="form-check-input" type="checkbox" name="absent1[]" value="all" ></th>
+                                <th scope="col">Absent</th>
                             </tr>
 				</thead>
 				
@@ -238,7 +205,10 @@
   
 
 			</table>
-            <button class='button2'><input type="hidden" name="date_absence" value="<?=date('Y-m-d H:i:s')?>">Valider</button>
+            <div class="container5">
+                <button class="btn" id="submjitBtn" type="submit" name="absent_modif" value="submit">Valider</button>
+                </form>
+            </div>     
 		</div>
 
 	</div>
@@ -250,14 +220,29 @@
 		$(document).ready(function() {
 
 			var table = $('#example').DataTable({
-					responsive: true
+					responsive: true,
+                    paging: false // Désactiver la pagination
 				})
 				.columns.adjust()
 				.responsive.recalc();
 		});
+        $(document).ready(function() {
+        $('#submitBtn').on('click', function(event) {
+            // Empêche la soumission du formulaire par défaut
+            event.preventDefault();
+            
+            // Affiche une boîte de dialogue avec un message d'alerte
+            if (confirm("Voulez-vous vraiment modifier ces absences ?")) {
+                // Si l'utilisateur clique sur "OK", soumet le formulaire
+                $('#myForm').submit();
+            } else {
+                // Sinon, ne soumet pas le formulaire
+                return false;
+            }
+        });
+    });
 	</script>
 
 </body>
 
 </html>
- 
