@@ -1,59 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partage des Absence</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-<div class="container-lg bg-primary my-5">
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <div class="card bg-light my-5">
-                <div class="card-body">
-                    <div class="card-title text-center mb-3">Espace de Gestion des absences</div>
-                    <div>Récapitulatif des absents pour la <strong><?= $data['nb_seance'].' séance ' .$data['date'].'  '. $data['type']  ;  ?></strong></div>
-                    <div>Liste des Absents <br><strong><?= count($data['etud']). ' Absents';?></strong> </div>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prenom</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach($data['etud'] as $etudiant):?>
-                            <tr>
-                                <th scope="row">#</th>
-                                <td><?= $etudiant->Nom ?></td>
-                                <td><?= $etudiant->Prenom ?></td>
-                               
-                         
-                            </tr>
-                        <?php endforeach;?>    
-                        </tbody>
-                    </table>
-                    <form action="" method="POST">
-                        <button class="btn btn-success" type="submit" name="passer">Passer</button>
-                    </form>
-        </div>
-            </div>
-    </div>
-</div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Cours</title>
+	<title>Recapitulatif des absents</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
@@ -123,6 +74,23 @@
   			background-position: center; 
   			background-repeat: no-repeat;
 		}
+        .btn {
+        background-color: #28a745;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .container5 {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn:hover {
+        background-color: #218838;
+    }
 
 		
 		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
@@ -162,9 +130,11 @@
 				</thead>
 				
         <tbody>
+        <?php $i=0; ?>        
         <?php foreach($data['etud'] as $etudiant):?>
+        <?php $i++ ?>    
                             <tr>
-                                <th scope="row">#</th>
+                                <th scope="row"> <?= $i; ?></th>
                                 <td><?= $etudiant->Nom ?></td>
                                 <td><?= $etudiant->Prenom ?></td>
                             </tr>
@@ -172,7 +142,14 @@
        
   </tbody>
 
+
 			</table>
+            <br>
+            <div class="container5">
+            <form action="" method="POST">
+  <button class="btn" type="submit" name="passer">Passer</button>
+  </form>
+  </div>
 
 
 		</div>
@@ -197,4 +174,3 @@
 </body>
 
 </html>
- 
