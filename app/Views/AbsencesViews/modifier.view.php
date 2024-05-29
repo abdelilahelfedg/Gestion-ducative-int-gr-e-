@@ -1,40 +1,9 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partage des Annonces</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-<div class="container-lg bg-primary my-5">
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <div class="card bg-light my-5">
-                <div class="card-body">
-                    <div class="card-title text-center mb-3">Espace de Gestion des absences</div>
-                    <form  id="myForm" action="<?=ROOT . "/" . "AbsenceControl" ."/". "Update" ?>" method="POST">
-                    <select name="nb_seance" id="">
-                    <option value="" disabled selected>Choisissez la seance à modifier</option>
-                    <?php foreach($data as $seance):?>
-                    <option value="<?=$seance->nb_seance; ?>"><?=$seance->nb_seance; ?></option>
-                    <?php endforeach;?>
-                    </select>
-                    <button class="btn btn-success" type="submit" name="supprimer" value="submit">Supprimer</button>
-                    <button class="btn btn-success" type="submit" name="modifier_seance" value="submit">Modifier</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partage des Cours</title>
+    <title>Modifier</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -43,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 .form {
   background-color: #fff;
@@ -173,7 +142,7 @@ body {
 <body>
 
 <div class="container">
-<form class="form">
+<form class="form" action="<?=ROOT . "/" . "AbsenceControl" ."/". "Update" ?>" method="POST">
   <span class="form-title">Espace de Gestion des absences</span>
   <div class="form-paragraph">
     <label for="email">Filiere</label>
@@ -184,13 +153,23 @@ body {
             <?php endforeach;?>
     </select>
   </div>
-<button type="submit" name="supprimer" value="submit">Modifier</button>
-<button type="submit" name="modifier_seance" value="submit">Supprimer</button>
-<a href="<?= ROOT."/"."HomeProf"?>"><button>Retour</button></a>
+  <button type="submit" name="modifier_seance" value="submit">Modifier</button>
+<button type="submit" name="supprimer" value="submit">Supprimer</button>
 </form>
+
 </div>
+<div class="container mt-3">
+<div class="d-flex flex-column align-items-end">
+<div class="me-2">
 
-
+        <a href="<?= ROOT . "/" . "HomeProf" ?>"><button class="">Retour au home</button></a>
+    </div>
+    <div class="mt-2">
+    <form action="<?= ROOT."/"."AbsenceControl"?>" method="POST" name="TPP">    
+   <button class="" type="submit" name="retour_en_arriere">Retour en arrière</button>
+    </form>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
